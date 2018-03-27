@@ -1,0 +1,25 @@
+{
+  "name": "browser",
+  "version": "1.0.0",
+  "description": "A web browser, scrapping links and saving into redis",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HugoB0ss/webBrowserProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HugoB0ss/webBrowserProject/issues"
+  },
+  "homepage": "https://github.com/HugoB0ss/webBrowserProject#readme",
+  "dependencies": {
+    "ineed": "^1.0.4",
+    "redis": "^2.8.0",
+    "uuid": "^3.2.1"
+  }
+}
