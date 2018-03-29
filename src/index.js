@@ -13,21 +13,21 @@ module.exports = (config) => {
     function processArray() {
         setInterval(function () {
             var nextUrl = toVisitArray[0];
-
-            visitedArray.push(toVisitArray.shift());
+            
             // TO DELETE ---- ONLY FOR DEBUG
             console.log(visitedArray);
             console.log(errorCounter);
             console.log(successCounter);
             if (nextUrl) {
-                parsePage(nextUrl);
+				toVisitArray.shift();
+				parsePage(nextUrl);                
             }
         }, 500);
     }
 
 
     function parsePage(url){
-        ineed.collect.hyperlinks.from(url,
+        ineed.collect.title.hyperlinks.from(url,
             function(err,response,result){
 
                 if(errorCounter >= 10 && errorCounter >= successCounter){
@@ -36,6 +36,7 @@ module.exports = (config) => {
                 if(err){
                     errorCounter++;
                 }else{
+					addVisitedPage(url,result.title);
                     addWithExistenceCheck(result.hyperlinks);
                     successCounter++;
                 }
@@ -49,6 +50,16 @@ module.exports = (config) => {
             }
         });
     }
+	
+	function addVisitedPage(url,title){
+		var visited = {
+			'url':url
+		}
+		if(title){
+			visited.title = title;
+		}
+		visitedArray.push(visited);
+	}
 
     function hasBeenVisited(url){
         return visitedArray[url];
